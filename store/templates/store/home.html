@@ -1,0 +1,88 @@
+{% extends 'store/base.html' %}
+
+{% block content %}
+
+<style>
+
+/* Animated Gradient Background */
+body{
+background:linear-gradient(-45deg,#067065,#03705e,#036c65,#2193b0);
+background-size:400% 400%;
+animation:gradientBG 10s ease infinite;
+}
+
+@keyframes gradientBG{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+/* Product Card */
+.product-card{
+transition:0.3s;
+border-radius:12px;
+overflow:hidden;
+background:white;
+}
+
+/* Hover animation */
+.product-card:hover{
+transform:translateY(-10px) scale(1.05);
+box-shadow:0 15px 35px rgba(0,0,0,0.3);
+}
+
+/* Image styling */
+.product-card img{
+height:200px;
+object-fit:cover;
+}
+
+/* Title */
+.product-title{
+font-size:18px;
+font-weight:bold;
+}
+
+/* Price */
+.product-price{
+color:#28a745;
+font-weight:bold;
+font-size:18px;
+}
+
+</style>
+
+
+<h2 class="text-center text-white mb-4">Our Products</h2>
+
+<div class="row">
+
+{% for product in products %}
+
+<div class="col-md-3">
+
+<div class="card product-card mb-4">
+
+<img src="{{ product.thumbnail }}" class="card-img-top">
+
+<div class="card-body text-center">
+
+<div class="product-title">{{ product.title }}</div>
+
+<p class="product-price">$ {{ product.price }}</p>
+
+<a href="/product/{{ product.id }}/" class="btn btn-success">
+View Product
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}
