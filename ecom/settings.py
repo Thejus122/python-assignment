@@ -9,14 +9,17 @@ from pathlib import Path
 # Base directory
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # SECURITY SETTINGS
 SECRET_KEY = 'django-insecure-w31p(*lj6bts_9$lg1n__4v%@c%)iv#%vh++$i!!z=5&g-jhx_'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+# FIX FOR VERCEL
+ALLOWED_HOSTS = [
+    ".vercel.app",
+    "localhost",
+    "127.0.0.1",
+]
 
 # INSTALLED APPLICATIONS
 INSTALLED_APPS = [
@@ -33,7 +36,6 @@ INSTALLED_APPS = [
     'orders',
 ]
 
-
 # MIDDLEWARE
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -45,21 +47,15 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-
 # ROOT URL
 ROOT_URLCONF = 'ecom.urls'
-
 
 # TEMPLATES SETTINGS
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-
-        # Global templates folder
         'DIRS': [BASE_DIR / 'templates'],
-
         'APP_DIRS': True,
-
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.request',
@@ -70,10 +66,8 @@ TEMPLATES = [
     },
 ]
 
-
 # WSGI
 WSGI_APPLICATION = 'ecom.wsgi.application'
-
 
 # DATABASE (SQLite)
 DATABASES = {
@@ -82,7 +76,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # PASSWORD VALIDATION
 AUTH_PASSWORD_VALIDATORS = [
@@ -100,7 +93,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # INTERNATIONALIZATION
 LANGUAGE_CODE = 'en-us'
 
@@ -110,19 +102,18 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-# STATIC FILES (CSS, JS, Bootstrap)
+# STATIC FILES
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static"
+    BASE_DIR / 'static',
 ]
 
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# MEDIA FILES (product images)
+# MEDIA FILES
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
-
 
 # DEFAULT PRIMARY KEY
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
